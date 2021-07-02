@@ -11,7 +11,7 @@ printf "\n-- Creating/checking cluster [%s]" $cluster
 az aks show -g $rg -n $cluster > /dev/null 2>&1 || az aks create -g $rg -n $cluster --node-count 3 > /dev/null 2>&1
 
 printf "\n-- Getting/Merging credentials"
-az aks get-credentials -g $rg -n $cluster
+az aks get-credentials -g $rg -n $cluster --overwrite-existing
 
 printf "\n-- Setting up SQL secrets and storage/persistent volume"
 alias k=kubectl
@@ -25,6 +25,7 @@ printf "\nCreating SQL Pods/Services"
 kubectl apply -f ./sqldeployment.yaml
 
 printf "\nDone. Showing services - wait for public IP to be provisioned.\n"
+printf "User: sa\nPassword: %s\n\n" $sqlSaPassword
 kubectl get services mssql-deployment
 
 

@@ -5,7 +5,7 @@ cluster="aks-sql-cluster"
 sqlSaPassword="MyC0m9l&xP@ssw0rd"
 
 printf "\n-- Creating/checking resource group [%s]" $rg
-az group create -n $rg -l $loc > /dev/null 2>&1;
+az group create -n $rg -l $loc > /dev/null 2>&1
 
 printf "\n-- Creating/checking cluster [%s]" $cluster
 az aks show -g $rg -n $cluster > /dev/null 2>&1 || az aks create -g $rg -n $cluster --node-count 3 > /dev/null 2>&1

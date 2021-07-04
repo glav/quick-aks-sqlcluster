@@ -2,6 +2,8 @@
 loc="AustraliaEast"
 rg="aks-sql"
 cluster="aks-sql-cluster"
+
+# Yeah - you should change this and not have it in src control. Having here for completeness tho.
 sqlSaPassword="MyC0m9l&xP@ssw0rd"
 
 printf "\n-- Creating/checking resource group [%s]" $rg
